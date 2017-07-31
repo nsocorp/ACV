@@ -252,14 +252,14 @@ void ACV(cv::Mat img, cv::Point cent, int size, double gauge_max1, double gauge1
 		color3, 2, CV_AA);
 
 	char str1[16], str2[16];
-	sprintf_s(str1, "%06.2f", std::min(std::max(0.0, gauge3 * 100.0), 100.0));
+	sprintf(str1, "%06.2f", std::min(std::max(0.0, gauge3 * 100.0), 100.0));
 	if (gauge3 > 0.3){
 		putText(img, str1, cv::Point(center.x + r6, center.y - r6 * 0.04), cv::FONT_HERSHEY_SIMPLEX, r1 * 0.004, color2, 1, CV_AA);
 	}
 	else {
 		putText(img, str1, cv::Point(center.x + r6, center.y - r6 * 0.04), cv::FONT_HERSHEY_SIMPLEX, r1 * 0.004, color3, 1, CV_AA);
 	}
-	sprintf_s(str2, "%05.0f", std::min(std::max(0.0, gauge5 * gauge_max1), gauge_max1));
+	sprintf(str2, "%05.0f", std::min(std::max(0.0, gauge5 * gauge_max1), gauge_max1));
 	if (gauge5 > 0.3){
 		putText(img, str2, cv::Point(center.x - r1 * 1.45, center.y - r6 * 0.04), cv::FONT_HERSHEY_SIMPLEX, r1 * 0.004, color2, 1, CV_AA);
 	}

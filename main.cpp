@@ -1,11 +1,3 @@
-#ifdef _DEBUG
-//Debugモードの場合
-#pragma comment(lib,"C:\\opencv\\build\\x86\\vc12\\lib\\opencv_world300d.lib")            // opencv_core
-#else
-//Releaseモードの場合
-#pragma comment(lib,"C:\\opencv\\build\\x86\\vc12\\lib\\opencv_world300.lib") 
-#endif
-
 #include "acv.hpp"
 
 #include "opencv2/opencv.hpp"
@@ -13,6 +5,8 @@
 
 #define _USE_MATH_DEFINES
 #include <math.h>
+
+#include <iostream>
 
 using namespace std;
 using namespace cv;
@@ -23,6 +17,12 @@ int main(){
 	double i = 0;
 
 	VideoCapture cap(0);
+	
+	if (!cap.isOpened()){
+		cout << "failur open the camera." << endl;
+		return -1;
+	}
+	
 	while (1){
 		cap >> image;
 		ACV(image, Point(255, 255), 150, 42589,
@@ -32,8 +32,10 @@ int main(){
 			-cos(i) + 0.1 * rand() / double(RAND_MAX),
 			-sin(i) + 0.1 * rand() / double(RAND_MAX));
 
-		imshow("a", image);
+		imshow("HUD", image);
 		waitKey(10);
+		
 		i += 0.01;
+		cout << i << endl;
 	}
 }
